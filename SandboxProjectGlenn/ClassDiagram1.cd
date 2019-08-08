@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SandboxProjectGlenn.RouteConfig">
+    <Position X="6.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.MvcApplication">
+    <Position X="6.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Context.DatabaseContext">
+    <Position X="16" Y="3.5" Width="1.5" />
+    <InheritanceLine Type="System.Data.Entity.DbContext" FixedFromPoint="true">
+      <Path>
+        <Point X="14.062" Y="7.75" />
+        <Point X="14.062" Y="6.963" />
+        <Point X="16.75" Y="6.963" />
+        <Point X="16.75" Y="6.338" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAgCAAAAAAMAAAAAAAAAAAAAAAAAAgAAAAEAAAIAA=</HashCode>
+      <FileName>Context\DatabaseContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Context.DatabaseInitializer">
+    <Position X="18.25" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Context\DatabaseInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Controllers.AccountSettingsController">
+    <Position X="9.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAACAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Controllers\AccountSettingsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Controllers.HomeController">
+    <Position X="12.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Controllers.InformationController">
+    <Position X="8.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Controllers\InformationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Controllers.LoginController">
+    <Position X="6.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQAAQAAAA=</HashCode>
+      <FileName>Controllers\LoginController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Controllers.RegisterController">
+    <Position X="13.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\RegisterController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Controllers.RunController">
+    <Position X="7" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\RunController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Controllers.RunDetailsController">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\RunDetailsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Controllers.StartSchemaController">
+    <Position X="3.75" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAEAAAAAAA=</HashCode>
+      <FileName>Controllers\StartSchemaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Models.Dashboard">
+    <Position X="16.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAABAAAAAAAAAAAAAAAAAAAEAEAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Models\Dashboard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Models.Run">
+    <Position X="4" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAACJAAAAAAAAAgEAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Run.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Models.RunDetails">
+    <Position X="5.75" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAACBAAQAAAAA0QAAAgAAAAAAAAAQAAACAA=</HashCode>
+      <FileName>Models\RunDetails.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Models.RunViewModel">
+    <Position X="7.75" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAACAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RunViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Models.StartSchemaIndexView">
+    <Position X="9.5" Y="15" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\StartSchemaIndexView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Models.StartSchemaRun">
+    <Position X="17.5" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAACAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\StartSchemaRun.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Models.StartSchemaViewModel">
+    <Position X="3.75" Y="12.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\StartSchemaViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Models.TrainingDistance">
+    <Position X="9.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Models\TrainingDistance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Models.TrainingIntensity">
+    <Position X="12" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TrainingIntensity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Models.TrainingsActivity">
+    <Position X="13.75" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TrainingsActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Models.TrainingTempo">
+    <Position X="15.5" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TrainingTempo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SandboxProjectGlenn.Models.User">
+    <Position X="13.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAwAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Web.Mvc.Controller" Collapsed="true">
+    <Position X="11.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="11.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Data.Entity.DbContext" Collapsed="true">
+    <Position X="13.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Data.Entity.DropCreateDatabaseIfModelChanges&lt;TContext&gt;" Collapsed="true">
+    <Position X="13.5" Y="9" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Web.HttpApplication" Collapsed="true">
+    <Position X="9.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

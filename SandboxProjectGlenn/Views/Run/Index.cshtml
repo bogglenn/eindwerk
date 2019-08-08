@@ -1,0 +1,326 @@
+﻿@model List<SandboxProjectGlenn.Models.Run>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/runstyle.css" rel="stylesheet" type="text/css" />
+<body>
+
+    @if (Model != null)
+    {
+    <div class="widthrun">
+        <div class="card">
+            <div class="card-body">
+                <h5><div id="dateTraining" class="position"> @Model[0].DateTraining.Day/@Model[0].DateTraining.Month/@Model[0].DateTraining.Year</div>   Training #@Model[0].RunDetails.DayCount</h5>
+                <input type="button" id="btnSave" class="btn btn-primary btn-end" data-toggle="modal" data-target="#run" value="Save run" onclick="location.href='@Url.Action("Index", "Home")';return false;">
+                <button class="btn btn-primary btn-end-a" id="toggle">begin run</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Timer</h6>
+                <div class="card-border">
+                    <h3 id="timer" class="card-title timer">00 : 00 . 000</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <table id="distancesTable">
+                        <tbody>
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <th>@Model[i].RunDetails.Duration</th>
+                                    <th>@Model[i].RunDetails.TrainingsActivity.Description</th>
+                                    <th>0</th>
+                                    <th style="display:none;">@Model[i].RunDetails.RunDetailsId</th>
+                                    <th>0</th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Music</h6>
+                <div class="card-border">
+                    <h3 class="card-title">
+                        <iframe src="https://open.spotify.com/embed/playlist/5ZGB9iqjpxnMTPspWQi9u1?si=ytok0ipQQbmHbv3cPwrmug" class="spotify" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <button id="dashboardbtn" class="btn btn-primary btn-end-a" onclick="location.href='@Url.Action("Index", "Home")';return false;">Dashboard</button>
+    </div>
+    }
+</body>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+<script type="text/javascript">
+    
+</script>
+<script type="text/javascript">
+    var btn = $('#btnSave');
+    var btnD = $('#dashboardbtn');
+    document.getElementById("toggle").onclick = function () {
+        if (!document.getElementById("btnSave").disabled) {
+            btn.attr("disabled", "disabled");
+            btnD.attr("disabled", "disabled");
+        } else {
+            btn.removeAttr("disabled");
+        }
+    }
+
+</script>
+<script type="text/javascript">
+
+    $("body").on("click", "#btnSave", function () {
+        //Loop through the Table rows and build a JSON array.
+        var runs = new Array();
+        $("#distancesTable TBODY TR").each(function () {
+            var row = $(this);
+            var run = {};
+            run.AverageSpeed = row.find("TH").eq(2).text();
+            run.DateTraining = document.getElementById("dateTraining").innerHTML;
+            run.RunDetailsId = row.find("TH").eq(3).text();
+            runs.push(run);
+            console.log(" test " + row.find("TH").eq(2).text());
+            console.log(" test " + row.find("TH").eq(3).text());
+
+        });
+        //Send the JSON array to Controller using AJAX.
+        $.ajax({
+            type: "POST",
+            url: "/RunDetails/InsertRuns",
+            data: JSON.stringify(runs),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+            }
+        });
+    });
+
+</script>
+<script>
+
+    function showPosition(position) {
+        return position.coords.latitude + " " + position.coords.longitude;
+    }
+
+    var timer = document.getElementById('timer');
+    var toggleBtn = document.getElementById('toggle');
+
+    var watch = new Stopwatch(timer);
+
+    function start() {
+        toggleBtn.textContent = 'Stop';
+        watch.start();
+    }
+
+    function stop() {
+        toggleBtn.textContent = 'Start';
+        watch.stop();
+    }
+
+    toggleBtn.addEventListener('click', function () {
+        watch.isOn ? stop() : start();
+    });
+    function Stopwatch(elem) {
+        var time = 0;
+        var offset;
+        var interval;
+        var rowCounter = 0;
+        var maximumRows = document.getElementById("distancesTable").rows.length;
+        var startLat;
+        var startLon;
+        var previousLat;
+        var previousLon;
+        var once = new Boolean(true);
+        navigator.permissions &&
+            navigator.permissions.query({ name: 'geolocation' }).then(function (PermissionStatus) {
+                if ('granted' === PermissionStatus.state) {
+                    navigator.geolocation.getCurrentPosition(function (geoposition) {
+                        ; /* You can use this position without prompting the user if the permission had already been granted */
+                        startLat = geoposition.coords.latitude;
+                        startLon = geoposition.coords.longitude;
+                        previousLat = startLat;
+                        previousLon = startLon;
+                    })
+                }
+            });
+        //saves all the speeds for the entire run per 10 seconds
+        var speedsTotal = [];
+        // saves the speeds for a specific round, example 3 min walk and then resets
+        var speedsPerRound = [];
+
+        function update() {
+            if (this.isOn) {
+                time += delta();
+            }
+
+            elem.textContent = timeFormatter(time);
+            var tabel = document.getElementById("distancesTable");
+            var duurTijd = tabel.rows[rowCounter].cells.item(0).innerHTML;
+            var duurTijd = 60;
+            //duurTijd = duurTijd * 60;
+            //duurTijd = duurTijd * 60;   //#min halveren testing => duurTijd * 30
+            if (once == false) {
+                if (Math.trunc(time / 1000) % 10 == 1) {
+                    once = !once;
+                    console.log("+11 set on true");
+                }
+            }
+            console.log(Math.trunc(time / 1000) + "  " + once);
+            if (Math.trunc(time / 1000) % 10 == 0 && once == true && Math.trunc(time / 1000) != 0) {
+                console.log("-11");
+                navigator.permissions &&
+                    navigator.permissions.query({ name: 'geolocation' }).then(function (PermissionStatus) {
+                        if ('granted' === PermissionStatus.state) {
+                            navigator.geolocation.getCurrentPosition(function (geoposition) {
+                                startLat = geoposition.coords.latitude; /* You can use this position without prompting the user if the permission had already been granted */
+                                startLon = geoposition.coords.longitude; /* You can use this position without prompting the user if the permission had already been granted */
+
+
+                            })
+                        }
+                    })
+                var distance = getDistanceFromLatLonInKm(previousLat, previousLon, startLat, startLon);
+                console.log(" -meter- " + distance);
+
+                speedsTotal.push(distance);
+                speedsPerRound.push(distance);
+                previousLat = startLat;
+                previousLon = startLon;
+                newTime = 0;
+                once = !once;
+                var speed = document.getElementById("distancesTable").rows[rowCounter].cells.item(4);
+                var currentSpeed = 0;
+                var i;
+                for (i = 0; i < speedsTotal.length; i++) {
+                    currentSpeed += speedsTotal[i];
+                }
+                console.log("curspd: " + currentSpeed);
+                var calcSpd = currentSpeed /10 *3600;
+                var calcSpdMthFlr = Math.round(calcSpd*10)/10;
+                speed.innerHTML = calcSpdMthFlr + "km/u";
+                speedsTotal = [];
+
+            }
+            // == 600m
+            if ((time / 1000) >= duurTijd) {
+                var x = document.getElementById("distancesTable").rows[rowCounter].cells.item(2);
+                var distancePerKmTotal = 0;
+                var i;
+                for (i = 0; i < speedsPerRound.length; i++) {
+                    distancePerKmTotal += speedsPerRound[i];
+                }
+                //
+                //DistanceKm => berekening van snelheid om 10sec. Duurtijd => aantal seconden.  Berekening snelheid ((meter / #min)*60)/1000. *3=> omdat duurtijd regel 166 /3 is.
+                console.log("distance" + distance);
+                var decimal = (distancePerKmTotal / duurTijd * 60) * 60
+                console.log("distance" + distance + "duurtijd" + duurTijd);
+
+                console.log("calc distance" + distance);
+                x.innerHTML = Math.floor(decimal * 100) / 100;
+                rowCounter++;
+                if (rowCounter >= maximumRows) {
+                    this.stop();
+                    var btn = $('#toggle');
+                    btn.attr("disabled", "disabled");
+                    var btnS = $('#btnSave');
+                    btnS.removeAttr("disabled");
+                } else {
+                    this.reset();
+                    speedsPerRound = [];
+                    navigator.vibrate(1000);
+                }
+            }
+        }
+
+        function delta() {
+            var now = Date.now();
+            var timePassed = now - offset;
+
+            offset = now;
+
+            return timePassed;
+        }
+
+        //calculate distances from two cordinates
+
+        function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+            var R = 6371; // Radius of the earth in km
+            var dLat = deg2rad(lat2 - lat1);  // deg2rad below
+            var dLon = deg2rad(lon2 - lon1);
+            var a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2)
+                ;
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c; // Distance in km
+            return d;
+        }
+
+        function deg2rad(deg) {
+            return deg * (Math.PI / 180)
+        }
+
+        //end calculate distances from two cordinates
+
+
+        function timeFormatter(time) {
+            time = new Date(time);
+
+            var minutes = time.getMinutes().toString();
+            var seconds = time.getSeconds().toString();
+            var milliseconds = time.getMilliseconds().toString();
+
+            if (minutes.length < 2) {
+                minutes = '0' + minutes;
+            }
+
+            if (seconds.length < 2) {
+                seconds = '0' + seconds;
+            }
+
+            while (milliseconds.length < 3) {
+                milliseconds = '0' + milliseconds;
+            }
+
+            return minutes + ' : ' + seconds + ' . ' + milliseconds;
+        }
+
+        function timeFormatterNew(time) {
+
+            time = new Date(time);
+
+            return time.getSeconds().toString();
+        }
+
+        this.start = function () {
+            interval = setInterval(update.bind(this), 10);
+            offset = Date.now();
+            this.isOn = true;
+        };
+
+        this.stop = function () {
+            clearInterval(interval);
+            interval = null;
+            this.isOn = false;
+        };
+
+        this.reset = function () {
+            time = 0;
+            update();
+        };
+
+        this.isOn = false;
+    }
+</script>

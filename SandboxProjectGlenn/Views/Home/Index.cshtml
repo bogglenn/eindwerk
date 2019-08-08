@@ -1,0 +1,41 @@
+﻿@model SandboxProjectGlenn.Models.Dashboard
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/dashstyle.css" rel="stylesheet" type="text/css" />
+<h2>Dashboard</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">Burned Calories - recent run</h6>
+        <h3 class="card-title">@Html.DisplayFor(x => x.Calories) kcal</h3> @*todo: enter value from calc*@
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">Average speed</h6>
+        <h3 class="card-title">@Html.DisplayFor(x => x.AverageSpeed) KM/H</h3> @*todo: enter value from calc*@
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">Run distance - recent run</h6>
+        <h3 class="card-title">@Html.DisplayFor(x => x.distance) KM  </h3>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">Run duration - recent run</h6>
+        <h3 class="card-title">@Html.DisplayFor(x => x.Time) Hours </h3> @*todo: enter value from db*@
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">Steps - recent run</h6>
+        <h3 class="card-title">@Html.DisplayFor(x => x.Steps) steps</h3> @*todo: enter value from calc*@
+    </div>
+</div>
+
+@*@Html.ActionLink("create agenda", "Index", "StartSchema")*@
+

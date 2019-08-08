@@ -1,0 +1,56 @@
+﻿@model SandboxProjectGlenn.Models.User
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Register", "Register", FormMethod.Post, new { @class = "form-horizontal margin-side", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h6 class="text-center">Create a new account.</h6>
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(a => a.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(a => a.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(a => a.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(a => a.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(a => a.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(a => a.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(a => a.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @*  Confirm password?
+
+            <div class="form-group">
+            @Html.LabelFor(a => a.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(a => a.ConfirmPassword, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    <div class="form-group postion-button">
+        <div class="col-md-offset-2 col-md-10 text-center">
+            <input type="submit" class="btn btn-default btn-primary btn-width" value="Sign up" />
+        </div>
+        <div class="col-md-offset-2 col-md-10 text-center postion-button">
+            <a href="@Url.Action("Index", "Login")" class="signed-up text-size-12"><u>Already have an account? Sign in</u></a>
+        </div>            
+
+        <div class="col-md-offset-2 col-md-10 text-center postion-button">
+            <a href="@Url.Action("PrivacyPolicy", "Information")" class="signed-up text-size">Privacy Policy</a>
+            <a href="@Url.Action("TermsOfUse", "Information")" class="signed-up text-size">Terms of use </a>
+        </div>
+    </div>
+}

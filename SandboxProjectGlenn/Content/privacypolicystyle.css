@@ -1,0 +1,24 @@
+﻿body {
+    background-color: #F0F0F7;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+.top-bar {
+    background-color: #43425D;
+    height: 104px;
+}
+.imgresizer {
+    width: 250px;
+    margin: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+h2{
+    margin:15px;
+}
+.card {
+    margin: 10px 10px;
+}

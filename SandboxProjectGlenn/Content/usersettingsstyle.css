@@ -1,0 +1,27 @@
+﻿.card {
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
+.text-muted {
+    color: black;
+    font-size: 0.9rem;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 5px;
+}
+.card-body {
+    padding: 1rem;
+}
+#Password {
+    width: 100%;
+}
+#Email {
+    width: 100%;
+}
+.btn-primary {
+    color: #000;
+    background-color: transparent;
+    border-color: #007bff;
+    width: 150px;
+    text-align: center;
+}

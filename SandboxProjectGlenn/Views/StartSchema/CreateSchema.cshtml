@@ -1,0 +1,212 @@
+﻿@model SandboxProjectGlenn.Models.StartSchemaIndexView
+@{
+    ViewBag.Title = "Choose schema";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" src="~/Scripts/jquery-3.0.0.js"></script>
+<script type="text/javascript" src="~/Scripts/popper.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/createschemastyle.css" rel="stylesheet" type="text/css" />
+
+<h2>New schema</h2>
+@using (Html.BeginForm("Agenda", "StartSchema"))
+{
+    <!-- Modal -->
+    <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="col-12 modal-title text-center" id="exampleModalLabel">Warning</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Creating a new schema will always overwrite the old one.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        @*5KM schema*@
+        <div class="card-body">
+            <h5 class="card-title whitefont">5KM Schema<img class="heartposition" src="~/Content/Images/Heart.svg" /></h5>
+            <h6 class="card-subtitle mb-2 whitefont">Intensity <img class="insitityposition" src="~/Content/Images/2star.svg" /></h6>
+            <p class="card-text greyfont">recommended for beginners and people who never ran before. Start training for 5 Kilometres</p>
+
+
+
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse_5km multiCollapse2_5km">Slow - 15 weeks</button>
+                    <div class="multi-collapse collapse show" id="multiCollapse_5km">
+                        <div class="card card-body">
+                            <div class="btn-group btn-group-toggle justify-content-center" data-toggle="buttons">
+                                <div class="d-flex align-items-start flex-column">
+                                    <label class="btn btn-secondary radiobtn active">
+                                        @Html.RadioButtonFor(m => m.chosenSchema, "3x slow - 15 weeks 05km", new { disabled = "disabled" })<label>3 Days a week</label>
+                                        @*<input type="radio" name="options" id="slow3d_5km" autocomplete="off" checked disabled> <div class="radiotextpush">3 Days a week</div>*@
+                                    </label>
+                                    <label class="btn btn-secondary radiobtn">
+                                        @Html.RadioButtonFor(m => m.chosenSchema, "4x slow - 15 weeks 05km", new { disabled = "disabled" })<label>4 Days a week</label>
+                                        @*<input type="radio" name="options" id="slow4d_5km" autocomplete="off" disabled> <div class="radiotextpush">4 Days a week</div>*@
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse_5km multiCollapse2_5km">Fast - 10 weeks</button>
+                    <div class="d-flex justify-content-center"><div class="btnline"></div></div>
+                    <div class="collapse multi-collapse" id="multiCollapse2_5km">
+                        <div class="card card-body">
+                            <div class="btn-group btn-group-toggle justify-content-center" data-toggle="buttons">
+                                <div class="d-flex align-items-start flex-column">
+                                    <label class="btn btn-secondary radiobtn">
+                                        @Html.RadioButtonFor(m => m.chosenSchema, "3x fast - 10 weeks 05km", new { @checked = "checked" })<label>3 Days a week</label>
+                                        @*<input type="radio" name="options" id="fast3d_5km" autocomplete="off"> <div class="radiotextpush">3 Days a week</div>*@
+                                    </label>
+                                    <label class="btn btn-secondary radiobtn">
+                                        @Html.RadioButtonFor(m => m.chosenSchema, "4x fast - 10 weeks 05km", new { disabled = "disabled" })<label>4 Days a week</label>
+                                        @*<input type="radio" name="options" id="fast4d_5km" autocomplete="off" disabled> <div class="radiotextpush">4 Days a week</div>*@
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary schemabtn" role="button" value="Start now!">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="card cardcolor midcardmargin">
+
+        @*10KM schema*@
+        <div class="card-body">
+            <h5 class="card-title whitefont">10KM Schema<img class="heartposition" src="~/Content/Images/Heart.svg" /></h5>
+            <h6 class="card-subtitle mb-2 whitefont">Intensity<img class="insitityposition" src="~/Content/Images/3star.svg" /></h6>
+            <p class="card-text greyfont">recommended for those who can already run 5km. Start training for 10 Kilometres</p>
+
+
+
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse_10km multiCollapse2_10km">Slow - 15 weeks</button>
+                    <div class="d-flex justify-content-center"><div class="btnline"></div></div>
+                    <div class="multi-collapse collapse show" id="multiCollapse_10km">
+                        <div class="card card-body cardcolor">
+                            <div class="btn-group btn-group-toggle justify-content-center" data-toggle="buttons">
+                                <div class="d-flex align-items-start flex-column">
+                                    <label class="btn btn-secondary radiobtn cardcolor active">
+                                        @Html.RadioButtonFor(m => m.chosenSchema, "3x slow - 15 weeks 10km", new { disabled = "disabled" })<label>3 Days a week</label>
+                                        @*<input type="radio" name="options" id="slow3d_10km" autocomplete="off" disabled> <div class="radiotextpush">3 Days a week</div>*@
+                                    </label>
+                                    <label class="btn btn-secondary radiobtn cardcolor">
+                                        @Html.RadioButtonFor(m => m.chosenSchema, "4x slow 15 - weeks 10km", new { disabled = "disabled" })<label>4 Days a week</label>
+                                        @*<input type="radio" name="options" id="slow4d_10km" autocomplete="off" disabled> <div class="radiotextpush">4 Days a week</div>*@
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse_10km multiCollapse2_10km">Fast - 10 weeks</button>
+                    <div class="d-flex justify-content-center"><div class="btnline"></div></div>
+                    <div class="collapse multi-collapse" id="multiCollapse2_10km">
+                        <div class="card card-body cardcolor">
+                            <div class="btn-group btn-group-toggle justify-content-center" data-toggle="buttons">
+                                <div class="d-flex align-items-start flex-column">
+                                    <label class="btn btn-secondary radiobtn cardcolor">
+                                        @Html.RadioButtonFor(m => m.chosenSchema, "3x fast - 10 weeks 10km", new { disabled = "disabled" })<label>3 Days a week</label>
+                                        @*<input type="radio" name="options" id="fast3d_10km" autocomplete="off" disabled> <div class="radiotextpush">3 Days a week</div>*@
+                                    </label>
+                                    <label class="btn btn-secondary radiobtn cardcolor">
+                                        @Html.RadioButtonFor(m => m.chosenSchema, "4x fast - 10 weeks 10km", new { disabled = "disabled" })<label>4 Days a week</label>
+                                        @*<input type="radio" name="options" id="fast4d_10km" autocomplete="off"> <div class="radiotextpush">4 Days a week</div>*@
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary schemabtn" role="button" value="Start now!">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        @*21KM schema*@
+        <div class="card-body">
+            <h5 class="card-title whitefont">21KM Schema<img class="heartposition" src="~/Content/Images/Heart.svg" /></h5>
+            <h6 class="card-subtitle mb-2 whitefont">Intensity<img class="insitityposition" src="~/Content/Images/4halfstar.svg" /></h6>
+            <p class="card-text greyfont">For those who want more. Push yourself a half marathon! Start training for 21 Kilometres</p>
+
+
+
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse_21km multiCollapse2_21km">Slow - 15 weeks</button>
+                    <div class="d-flex justify-content-center"><div class="btnline"></div></div>
+                    <div class="multi-collapse collapse show" id="multiCollapse_21km">
+                        <div class="card card-body">
+                            <div class="btn-group btn-group-toggle justify-content-center" data-toggle="buttons">
+                                <div class="d-flex align-items-start flex-column">
+                                    <label class="btn btn-secondary radiobtn active">
+                                        @Html.RadioButtonFor(m => m.chosenSchema, "3x slow - 15 weeks 21km")<label>3 Days a week</label>
+                                        @*<input type="radio" name="options" id="slow3d_21km" autocomplete="off"> <div class="radiotextpush">3 Days a week</div>*@
+                                    </label>
+                                    <label class="btn btn-secondary radiobtn">
+                                        @Html.RadioButtonFor(m => m.chosenSchema, "4x slow - 15 weeks 21km")<label>4 Days a week</label>
+                                        @*<input type="radio" name="options" id="slow4d_21km" autocomplete="off" disabled> <div class="radiotextpush">4 Days a week</div>*@
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse_21km multiCollapse2_21km">Fast - 10 weeks</button>
+                    <div class="d-flex justify-content-center"><div class="btnline"></div></div>
+                    <div class="collapse multi-collapse" id="multiCollapse2_21km">
+                        <div class="card card-body">
+                            <div class="btn-group btn-group-toggle justify-content-center" data-toggle="buttons">
+                                <div class="d-flex align-items-start flex-column">
+                                    <label class="btn btn-secondary radiobtn">
+                                        @Html.RadioButtonFor(m => m.chosenSchema, "3x fast - 10 weeks 21km", new { disabled = "disabled" })<label>3 Days a week</label>
+                                        @*<input type="radio" name="options" id="fast3d_21km" autocomplete="off" disabled> <div class="radiotextpush">3 Days a week</div>*@
+                                    </label>
+                                    <label class="btn btn-secondary radiobtn">
+                                        @Html.RadioButtonFor(m => m.chosenSchema, "4x fast - 10 weeks 21km", new { disabled = "disabled" })<label>4 Days a week</label>
+                                        @*<input type="radio" name="options" id="fast4d_21km" autocomplete="off"> <div class="radiotextpush">4 Days a week</div>*@
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary schemabtn" role="button" value="Start now!">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('#warningModal').modal('show');
+    });
+</script>

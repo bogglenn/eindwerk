@@ -1,0 +1,90 @@
+﻿h2 {
+    font-size: 1.75rem;
+    margin-left: 0px;
+}
+h6 {
+    font-size: 0.75rem;
+}
+p {
+    font-size: 1rem;
+}
+.card {
+    background-color: #43425D;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-right: -30px;
+    border: 0;
+    margin-left: -6px;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.card-title {
+    margin-bottom: .75rem;
+}
+label {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-left: 5px;
+}
+.whitefont {
+    color: white;
+    padding-bottom: 10px;
+}
+.greyfont{
+    color:lightgrey;
+    max-width:360px;
+}
+.btn-primary {
+    background-color: transparent;
+    border-color: #FF6565;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.radiotextpush {
+    display: inline-block;
+    margin-left: 10px;
+    font-weight: 500;
+}
+.btnpush {
+    margin-right: 0px;
+    text-align: center;
+}
+.btn{
+    width:200px;
+}
+.radiobtn {
+    margin-bottom: 5px;
+    text-align: left;
+    width: 160px;
+    border: 0;
+    background-color: #43425D;
+}
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show > .btn-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.schemabtn {
+    float: right;
+    width: 100px;
+    background-color: #FF6565;
+}
+.cardcolor {
+    background-color: #706EA4;
+}
+.midcardmargin {
+    margin: 15px -6px;
+}
+.insitityposition {
+    float: right;
+    width: 30%;
+}
+.heartposition {
+    float: right;
+    margin-top: 5px;
+    width: 10%;
+}

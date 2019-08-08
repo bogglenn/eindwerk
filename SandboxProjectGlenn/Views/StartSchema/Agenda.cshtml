@@ -1,0 +1,107 @@
+﻿@model SandboxProjectGlenn.Models.StartSchemaViewModel
+@{
+    ViewBag.Title = "Agenda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript" src="@Url.Content("/Scripts/core/main.js")"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/daygrid/main.js")"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/interaction/main.js")"></script>
+<script type="text/javascript" src="~/Scripts/jquery-3.0.0.js"></script>
+<script type="text/javascript" src="~/Scripts/popper.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+
+<link href="@Url.Content("/Scripts/core/main.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("/Scripts/daygrid/main.css")" rel="stylesheet" type="text/css" />
+<link href="~/Content/agendastyle.css" rel="stylesheet" type="text/css" />
+
+
+<h2>Schema</h2>
+<div id='calendar'></div>
+
+<div id="fullCalModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                <h4 id="modalTitle" class="col-12 modal-title text-center"> </h4>
+            </div>
+            <div class="modal-bg">
+                <div id="modalBody" class="modal-body"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-primary btn-fixed-bottom-left" data-dismiss="modal">Close</button>
+                @using (Html.BeginForm("Index", "Run", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m => m.ChosenDate, new { id = "chosenSchedule" })
+                    <button type="submit" class="btn btn-primary btn-fixed-bottom-right">Start Run</button>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class='text-fixed-bottom'>tap to select a date</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            eventClick: function (info) {
+                var startDate = new Date();
+                var endStart = new Date();
+                var daysToAdd = 7;
+                var daysToSubtract = 1;
+
+                startDate.setDate(startDate.getDate() + daysToAdd);
+                endStart.setDate(endStart.getDate() - daysToSubtract);
+                //check if yesterday is crossed out. this code disables other dates
+                if (info.event.start > startDate || info.event.start < endStart ) {
+                    alert("You cannot work out on this day!");
+                } else {
+                    $('#chosenSchedule').val(info.event.start);
+                    $('#modalTitle').html("" + info.event.start.toString().substring(4, 16));
+                    $('#modalTitle1').html(info.event.title);
+                    $('#modalBody').html(info.event.extendedProps.description);
+                    $('#fullCalModal').modal();
+                }
+            },
+            header: {
+                left: 'prev',
+                center: 'title',
+                right: 'next'
+            },
+            height: 400,
+            html: true,
+            plugins: ['interaction', 'dayGrid'],
+            editable: false,
+            eventLimit: true, // allow "more" link when too many events
+            events: [
+            @{SandboxProjectGlenn.Models.StartSchemaRun runView = Model.Runs.Last(); }
+            @foreach (var item in Model.Runs) {
+                    @:{
+                            @: title: ('@item.DateWorkout.Day'),
+                            @: start: ('@item.DateWorkout.ToString("yyyy-MM-dd")'),
+                            @: description: ('@item.workoutSchema')
+                    @:}
+
+                    if (item != runView) {
+                        @:,
+                    }
+                    else
+                    {
+                        @:
+                    }
+                }
+        ]
+        });
+
+        calendar.render();
+    });
+
+</script>

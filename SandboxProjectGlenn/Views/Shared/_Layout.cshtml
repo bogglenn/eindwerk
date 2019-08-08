@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>@ViewBag.Title - Frund</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/popper.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+
+</head>
+<body>
+
+    <div class="navbar navbar-inverse-top navbar-fixed-top">
+        <ul class="nav navbar-nav navbar-right">
+            <a class="@(ViewContext.RouteData.Values["Action"].ToString() == "Account" ? "active" : "") borderprofile" href="@Url.Action("Account","AccountSettings")"><img class="profileradius" src="~/Content/Images/Bob_de_Lange_(1971).jpg" /></a>
+            <a ><img class="arrowdown" src="~/Content/Images/small-down.svg" /></a>
+            
+            <div class="seperator"></div>
+
+            <a style="opacity:0.2"><img class="notify" src="~/Content/Images/notification.svg" /></a>
+
+        </ul>
+    </div>
+   
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="navbar navbar-inverse-left navbar-fixed-left" id="NavHidder">
+
+                <a class="navbar-brand" href="#"><img class="logowidth" src="~/Content/Images/logonotext.png" /></a>
+                <ul class="nav navbar-nav iconpush">
+                    <li><a id="dashboard" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")" href="@Url.Action("Index","Home")"><img class="iconposition" src="~/Content/Images/dashboard.svg" /></a></li>
+                    <li><a id="schema" class="@(ViewContext.RouteData.Values["Action"].ToString() == "CreateSchema" ? "active" : "")" href="@Url.Action("CreateSchema","StartSchema")"><img class="iconposition" src="~/Content/Images/Calendar.svg" /></a></li>
+                    <li><a id="continueschema" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SavedAgenda" ? "active" : "")" href="@Url.Action("SavedAgenda","StartSchema")"><img class="iconposition" src="~/Content/Images/continuerun.svg" /></a></li>
+                    <li class="disabled-icon"><img class="iconposition " src="~/Content/Images/checkhistory.svg" /></li>
+                    <li class="disabled-icon"><img class="iconposition " src="~/Content/Images/friends.svg" /></li>
+                    <li class="disabled-icon"><img class="iconposition " src="~/Content/Images/racefriends.svg" /></li>
+                    <li class="disabled-icon"><img class="iconposition " src="~/Content/Images/newschema.svg" /></li>
+                    <li class="disabled-icon"><img class="iconposition " src="~/Content/Images/helpcenter.svg" /></li>
+                    <li><a href="@Url.Action("LogOff","Login")"><img class="iconposition " src="~/Content/Images/logout.svg" /></a></li>
+                </ul>
+                @*<div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav"></ul>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+        <div class="col-xs-10 col-sm-8 pushcol">
+
+            <div class="bodycontent">
+                @RenderBody()
+            </div>
+        </div>
+
+    </div>
+
+    @*<div class="container body-content">
+        @RenderBody()
+        <hr />*@
+    @*<footer>
+        </footer>*@
+    @*</div>*@
+</body>
+</html>

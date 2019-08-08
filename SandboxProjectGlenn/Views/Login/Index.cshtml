@@ -1,0 +1,67 @@
+﻿@model SandboxProjectGlenn.Models.User
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+
+}
+
+<h6 class="text-center">Welcome! Please login to your account</h6>
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+@if (@ViewBag.Message != null)
+{
+    <div style="border: 1px solid red">
+        @ViewBag.Message
+    </div>
+}
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+
+                @Html.LabelFor(a => a.Email, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(a => a.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(a => a.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+                <div class="form-group">
+                    @Html.LabelFor(a => a.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group postion-button">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-default btn-color" />
+                        <input type="button" value="Sign Up" class="btn btn-default btn-inverted" onclick="location.href='@Url.Action("Index", "Register")';return false;" />
+                    </div>
+                </div>
+                @* Enable this once you have account confirmation enabled for password reset functionality
+                    <p>
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                    </p>*@
+            }
+        </section>
+
+        <div class="col-md-offset-2 col-md-10 text-center">
+            <a href="@Url.Action("PrivacyPolicy", "Information")" class="signed-up text-size">Privacy Policy</a>
+            <a href="@Url.Action("TermsOfUse", "Information")" class="signed-up text-size">Terms of use </a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+    });
+    function showPosition(position) {
+        console.log(position.coords.latitude + " " + position.coords.longitude);
+    }
+</script>
